@@ -32,7 +32,7 @@ lucene突出的有点
 
     Hits:用来保存搜索结果的
 
-    使用Lucene分为几个不走，都是围绕索引展开的
+    使用Lucene都是围绕索引展开
     1、写索引 IndexWriter
     2、读索引 IndexReader
     3、查索引 IndexSearcher
