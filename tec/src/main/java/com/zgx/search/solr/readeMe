@@ -1,0 +1,35 @@
+
+
+
+SolrCloud和MultiCore的区别
+    SolrCloud模式下有Cluster,Node,Collection,Shard,LeaderCore，ReplicationCore几个概念
+
+    Cluseter集群:集群是一组作为一个单元管理的的Solr节点。真个集群必须使用同一套schema和solrconfig
+    Node节点:一个运行SOlr的JVM实例
+    Shared碎片:一个分区通过指定的复制因子(replication factor)被存储在多个节点上。所有的这些节点共同形成一个碎片。一个节点可能有多个碎片组成。
+    Leader负责人:每个碎片(shard)都有一个节点标识作为它的领导。所有写操作经过领导节点写入指定的分区。
+    Replication Factor复制因子的最少数量的文件的副本集群维护。
+
+    Collection:collection是否访问cluster的入口，colection是一个逻辑存在的东西，因此是可以跨Node的，在任意节点上都可以访问Collection
+
+    Shard
+        逻辑存在，可以跨Node 1个shard下面能且包含一个Leader
+                          1个shard线面可以包含0个或多个Repllicatoin
+
+    solrCloud的工作模式
+        在solrCloud模式下，同一个集群里所有Core的配置是统一的。Core有leader和replication两种角色，每个Core一定属于一个Dhard
+                         Core在Shard中扮演Leader还是replication由Solr内部自动协调，目前没有找到人工干预的方法，也不需要干预
+                         因为SolrCloud的过程:Solrj向Zookeeper咨询Colleciton的地址，Zookeeper返回存货的节点供访问，插入数据的是偶
+                         由SolrClod内部卸掉数据分发
+
+
+     MultiCore工作模式
+              MultiCore模式下各Core之间是相互独立的，同一个Jvm下可以同时运行多个不同配置的
+              Core。当然在这种模式下，也可以通过参数同时反问多个Core，可以通过配置实现Master-
+              replication主从模式的复制，不过这些都是需要自己编写的JavaApp来完成。
+
+
+
+
+
+

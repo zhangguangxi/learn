@@ -27,6 +27,7 @@ public class Indexer {
 
         //创建分词器
         Analyzer analyzer=new StandardAnalyzer();//分词器
+
         //创建写索引配置(依赖分词器)
         IndexWriterConfig writerConfig = new IndexWriterConfig(analyzer);
         //索引存储位置
