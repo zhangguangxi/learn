@@ -28,8 +28,23 @@ SolrCloud和MultiCore的区别
               Core。当然在这种模式下，也可以通过参数同时反问多个Core，可以通过配置实现Master-
               replication主从模式的复制，不过这些都是需要自己编写的JavaApp来完成。
 
+     Solr基本配置(solr.xml)
+     solr应用配置(SolrConfig.xml)
+     Solr数据结构配置(SchemaXml)
 
 
+
+
+2016-07-28任务
+Solr查询语法
+
+Solr函数查询
+
+Lucene查询语法
+
+Solr层面搜索(Facet)参数详细解
+
+Solr从数据库导入数据（DIH）
 
 
 
