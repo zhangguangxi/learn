@@ -192,6 +192,129 @@ Solr层面搜索(Facet)参数详细解
         http://wiki.apache.org/solr/SimpleFacetParameters
 
 Solr从数据库导入数据（DIH）
+地址:http://www.solr.cc/blog/?p=260
+
+Solr从数据库导入数据（DIH）
+Posted on 一月 23, 2013 in: Solr入门|Solr从数据库导入数据（DIH）已关闭评论
+一. 数据导入(DataImportHandler-DIH)
+
+DIH 是solr 提供的一种针对数据库、xml/HTTP、富文本对象导入到solr 索引库的工具包。这里只针对数据库做介绍。
+
+A、准备以下jar包
+
+apache-solr-dataimporthandler-4.0.0.jar
+
+apache-solr-dataimporthandler-extras-4.0.0.jar
+
+apache-solr-dataimportscheduler-1.1.jar(增量导入使用)
+
+数据库对应的jdbc驱动包这里使用的是Oracle oracle10g.ja放入Tomcat6.0.36/webapps/sol/WEB-INF/lib 中
+
+B、配置solrconfig.xml
+
+在solrconfig.xml中加入如下配置：
+
+<requestHandlername=”/dataimport” class=”org.apache.solr.handler.dataimport.DataImportHandler”>
+
+<lst name=”defaults”>
+
+<str name=”config”>xx-data-config.xml</str>
+
+</lst>
+
+</requestHandler>
+
+C、配置数据源
+
+在与solrconfig.xml文件同级的目录中建立上述配置中的xx-data-config.xml文件，配置如下
+
+dih
+
+query属性为全导入的时候使用。其他为增量导入使用。
+
+<?xml version=”1.0″ encoding=”UTF-8″ ?>
+
+<dataConfig>
+
+<dataSource type=”JdbcDataSource”
+
+driver=”oracle.jdbc.driver.OracleDriver”
+
+url=”jdbc:oracle:thin:@192.168.0.129:1521:orcl”
+
+user=”username”
+
+password=”password”/>
+
+<document>
+
+<entity name=”business_info” pk=”ID”
+
+query=”select t.ID id,business_name,bussiness_type from business t”
+
+deltaImportQuery=”select t.ID id,business_name,bussiness_type from business t where id=’${dataimporter.delta.ID}'”
+
+deltaQuery=”select t.ID id,business_name,bussiness_type from business t where  to_char(updatetime,’yyyy-mm-dd hh24:mi:ss’)> ‘${dataimporter.last_index_time}'”>
+
+<field column=”ID” name=”id”/>
+
+</entity>
+
+</document>
+
+</dataConfig>
+
+
+
+至此所有DIH的配置完成，在浏览器中输入命令：
+
+全导入：
+
+http://localhost:8085/solr/core0/dataimport?command=full-import&commit=ture
+
+增量导入：
+
+http://localhost:8085/solr/core0/dataimport?command=delta-import&clean=false&commit=ture
+
+查看导入状态
+
+http://localhost:8085/solr/core0/dataimport?command=status
+
+D、处理CLOB字段
+
+<entity name=”meta” query=”select id,filename,content,bytes from documents” transformer=”ClobTransformer”>
+
+<field column=”ID” name=”id” />
+
+<field column=”CONTENT” name=”CONTENT” clob=”true” />
+
+</entity>
+
+ClOB 字段的 column 必须大写！！
+
+E、DIH内存溢出错误
+
+在使用DIH时，容易报内存溢出错误。可以通过设置jvm大小来解决。设置方法如下：
+
+在tomcat\bin\startup.bat 加入SET JAVA_OPTS=-Xms128m -Xmx1024m 配置 这里设置的是1024M，根据情况可以适量增大
+
+F、自动全导入和自动增量导入
+
+此功能可以自己写程序实现，也可利用apache-solr-dataimportscheduler-1.0.jar包完成此功能。配置如下：
+
+修改solr.war中WEB-INF/web.xml, 在servlet节点前面增加:
+
+<listener>
+<listener-class>
+org.apache.solr.handler.dataimport.scheduler.ApplicationListener
+</listener-class>
+</listener>
+
+将apache-solr-dataimportscheduler-.jar 中 dataimport.properties 取出并根据实际情况修改,然后放到 solr.home/conf (不是solr.home/core/conf) 目录下面
+
+具体配置可参考：http://code.google.com/p/solr-dataimport-scheduler/
+
+
 
 
 
