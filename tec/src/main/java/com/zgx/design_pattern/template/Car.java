@@ -24,4 +24,8 @@ public abstract class Car {
     public void stopCar(){
         System.out.printf("停车!");
     }
+
+    public static void main(String[] args) {
+
+    }
 }
