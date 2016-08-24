@@ -1,0 +1,23 @@
+Bootstrap
+         基于html、css、javascript 简单 灵活
+
+
+         Bootstrap CSS概览【使用了一些HTML5元素和CSS属性】
+                           申明使用HTML5文档类型(Doctype)需要如下格式的代码
+                           <!DOCTYPE html>
+                           <html>
+                           ....
+                           <html>
+                           如果在Bootstrap创建的网页开头使用HTML5的文档类型(Doctype)，您可能面临一写浏览器显示不一致的问题，甚至可能面临一些特定情境下
+                           的不一致，以至于您的代码不能通过W3c的标准验证
+        移动设备优先
+                          Bootstrap 3默认的css的本省就对移动设备友好支持。
+                          为了让Bootstrap开发的网站对移动呢设备友好，确保适当的绘制和触屏缩放，需要在网页的head之中天剑viewport meeta标签，如下所示
+                          <meta name="viewport" content="with=device-with,initial-scale=1.0" maximum-scale=1.0, user-scalable=no">
+                          with属性控制设备的宽度。假设您的网站被带有不同屏幕分辨率的设备浏览，那么将它设置为device-width可以确保它能正确呈现在不同设备上
+                          initial-scale=1.0确保网页加载时,以1:1的比例呈现，不会有任何缩放
+                          maximum-scale=1.0 与 user-scalable=no 一起使用。这样禁用缩放功能后，用户只能滚动屏幕，就能让您的网站看上去更像原生应用的感觉。
+
+        响应式图像
+                        <img src=".."
+
