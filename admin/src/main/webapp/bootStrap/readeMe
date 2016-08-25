@@ -153,6 +153,19 @@ BootStrap代码
                <code>	           同一行代码片段: span, div
 
 
+      Bootstrap布局组件
+               字体图标(Glyphicons Halflings)需要商业许可，但是您可以通过基于项目的bootstrap来免费试用这些图标。
+               我们已经在 环境安装 章节下载了 Bootstrap 3.x 版本，并理解了它的目录结构。在 fonts 文件夹内可以找到字体图标，它包含了下列这些文件：
+               glyphicons-halflings-regular.eot
+               glyphicons-halflings-regular.svg
+               glyphicons-halflings-regular.ttf
+               glyphicons-halflings-regular.woff
+               相关的 CSS 规则写在 dist 文件夹内的 css 文件夹内的 bootstrap.css 和 bootstrap-min.css 文件上。
+
+
+
+
+
 
 
 
