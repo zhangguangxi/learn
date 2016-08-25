@@ -9,6 +9,7 @@
   <modules>
     <module>common-utils</module>
     <module>tec</module>
+      <module>admin</module>
   </modules>
 
   <packaging>pom</packaging>

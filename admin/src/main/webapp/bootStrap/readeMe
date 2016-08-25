@@ -19,5 +19,154 @@ Bootstrap
                           maximum-scale=1.0 与 user-scalable=no 一起使用。这样禁用缩放功能后，用户只能滚动屏幕，就能让您的网站看上去更像原生应用的感觉。
 
         响应式图像
-                        <img src=".."
+                        <img src=".."  class="img-responsive" alt="响应式图像">
+                        通过img-responsive class可以让Bootstrap 3的图像对响应式布局的和支持更友好
+
+       全局显示、排版、链接
+                        基本的全局显示
+                        body {
+                          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                          font-size: 14px;
+                          line-height: 1.428571429;
+                          color: #333333;
+                          background-color: #ffffff;
+                        }
+                        第一条规则设置 body 的默认字体样式为 "Helvetica Neue", Helvetica, Arial, sans-serif。
+                        第二条规则设置文本的默认字体大小为 14 像素。
+                        第三条规则设置默认的行高度为 1.428571429。
+                        第四条规则设置默认的文本颜色为 #333333。
+                        最后一条规则设置默认的背景颜色为白色。
+
+                        排版
+                            使用@font-family-base @font-szie-base 和@line-height-base属性作为排版样式
+                        链接样式
+                            通过属性@link-color 设置全局链接的颜色
+
+                            避免跨浏览器的不一致
+                                   Bootstrap使用Normalize来建立跨浏览器的一致性
+
+                            容器(Container):Bootstrap 3 的container class 用于包裹页面上的内容，让我们一起看看bootstrapc.ass文件子女中的.container class
+
+          Bootstrap网格系统
+                         Bootstrap 提供了一套响应式、移动设备优先的流式网格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。
+
+           什么是 Bootstrap 网格系统（Grid System）？
+               Bootstrap 官方文档中有关网格系统的描述：
+               Bootstrap 包含了一个响应式的、移动设备优先的、不固定的网格系统，可以随着设备或视口大小的增加而适当地扩展到 12 列。它包含了用于简单的布局选项的预定义类，也包含了用于生成更多语义布局的功能强大的混合类
+            移动设备优先策略
+                内容：绝对什么是最重要的
+                布局：优先设计更小的宽度；基础的css是移动设备优先，媒体查询针对于平板电脑、台式电脑
+
+            Bootstrap 网格系统（Grid System）的工作原理
+                网格系统通过一系列包含内容的行和列来创建页面布局。下面列出了 Bootstrap 网格系统是如何工作的：
+                行必须放置在 .container class 内，以便获得适当的对齐（alignment）和内边距（padding）。
+                使用行来创建列的水平组。
+                内容应该放置在列内，且唯有列可以是行的直接子元素。
+                预定义的网格类，比如 .row 和 .col-xs-4，可用于快速创建网格布局。LESS 混合类可用于更多语义布局。
+                列通过内边距（padding）来创建列内容之间的间隙。该内边距是通过 .rows 上的外边距（margin）取负，表示第一列和最后一列的行偏移。
+                网格系统是通过指定您想要横跨的十二个可用的列来创建的。例如，要创建三个相等的列，则使用三个 .col-xs-4。
+
+          媒体查询
+              媒体查询是非常别致的有条件的css规则。它只适用于一些基于某些条件的css。如果满足那些条，则应用相应的样式。
+              Bootstrap中的媒体查询允许您基于视口大小移动、显示并隐藏内容。
+
+
+              Bootstrap在中型设备中，会查找带有md的类，并使用他们。在大型设备中，会查找带有lg的类
+              并使用他们
+
+           Bootstrap 响应式实用工具
+                Bootstrap 提供了一些辅助类，以便更快地实现对移动设备友好的开发。这些可以通过媒体查询
+        结合大型、小型和中型设备，实现内容对设备的显示和隐藏
+                           超小屏幕手机(<768px)         小屏幕平板(>=768px)       中等屏幕桌面(>=992px)               大屏幕桌面(>=1200px)
+       .visible-xs-*       可见                         隐藏                        隐藏                               隐藏
+       .visible-sm-*       隐藏                         可见                        隐藏                               隐藏
+       .visible-md-*	   隐藏	                        隐藏                      	可见	                           隐藏
+       .visible-lg-*	   隐藏                      	隐藏                      	隐藏                               可见
+       .hidden-sm	       可见                       	隐藏	                    可见                               可见
+       .hidden-md	       可见	                        可见	                    隐藏	                           可见
+       .hidden-lg	       可见	                        可见	                    可见	                           隐藏
+
+
+        从 v3.2.0 版本起，形如 .visible-*-* 的类针对每种屏幕大小都有了三种变体，每个针对 CSS 中不同的 display 属性，列表如下：
+        类组	CSS display
+        .visible-*-block	display: block;
+        .visible-*-inline	display: inline;
+        .visible-*-inline-block	display: inline-block;
+
+
+        打印类
+                class                               浏览器                        打印机
+             .visible-print-block                   隐藏                          可见
+             .visible-print-inline                  隐藏                          可见
+             .visible-print-inline-block            隐藏                          可见
+             .hidden-print                          可见                          隐藏
+
+        Bootstrap排版
+                  Bootstrap 使用 Helvetica Neue、 Helvetica、 Arial 和 sans-serif 作为其默认的字体栈。
+                  使用  的Bootstrap排版特性，您可以创建标题、段落、列表及其他内联元素。
+
+
+            标题:定义了所有的HTML标题(h1到h6)的样式。
+            内联子标题:在元素两旁添加<small>或添加.smlall class 这样子您就能得到一个字号更小的颜色更浅的文本。
+            引导主题副本:为了给段落添加强调文本，则可以增加class="lead",这将得到更大更粗、行高更高的文本
+            强调:HTML的默认强调标签<small>(设置文本为父文本大小的85%) <strong>(设置文本为更粗的文本) <em>设置文本为斜体
+            缩写:<abbr>元素的样式为显示在文本底部的一条虚线边框，当鼠标悬停上面的时候回显示完整的文本，请添加.initialism到<abbr>
+            地址(Address):使用<address>标签
+                          <address>标签，默认为display:block,需要使用标签来为封闭的地址文本添加换行
+            引用(Blockquote):在任意的 HTML 文本旁使用默认的 <blockquote>。其他选项包括，添加一个 <small> 标签来标识引用的来源，使用 class .pull-right 向右对齐引用
+            列表:Bootstrap支持有序列表、无序列表和定义列表。
+                 有序列表是指艺术字或其他有序支付开头的列表
+                 无序列表:无序列表是指没有特定顺序的列表，是以传统风格的着重号开头的列表。。如果您不想显示这些着重号，您可以使用 class .list-unstyled 来移除样式。您也可以通过使用 class .list-inline 把所有的列表项放在同一行中。
+                 定义列表：在这种类型的列表中，每个列表项可以包含 <dt> 和 <dd> 元素。<dt> 代表 定义术语，就像字典，这是被定义的属于（或短语）。接着，<dd> 是 <dt> 的描述。您可以使用 class dl-horizontal 把 <dl> 行中的属于与描述并排显示
+
+            更多排版类
+                 .lead	            使段落突出显示	尝试一下
+                 .small	            设定小文本 (设置为父文本的 85% 大小)	尝试一下
+                 .text-left	         设定文本左对齐	尝试一下
+                 .text-center	    设定文本居中对齐	尝试一下
+                 .text-right	    设定文本右对齐	尝试一下
+                 .text-justify	    设定文本对齐,段落中超出屏幕部分文字自动换行	尝试一下
+                 .text-nowrap	    段落中超出屏幕部分不换行	尝试一下
+                 .text-lowercase	设定文本小写	尝试一下
+                 .text-uppercase	设定文本大写	尝试一下
+                 .text-capitalize	设定单词首字母大写	尝试一下
+                 .initialism	    显示在 <abbr> 元素中的文本以小号字体展示	尝试一下
+                 .blockquote-reverse	设定引用右对齐	尝试一下
+                 .list-unstyled	    移除默认的列表样式，列表项中左对齐 ( <ul> 和 <ol> 中)。 这个类仅适用于直接子列表项 (如果需要移除嵌套的列表项，你需要在嵌套的列表中使用该样式)	尝试一下
+                 .list-inline	    将所有列表项放置同一行	尝试一下
+                 .dl-horizontal	    该类设置了浮动和偏移，应用于 <dl> 元素和 <dt> 元素中，具体实现可以查看实例	尝试一下
+                 .pre-scrollable	使 <pre> 元素可滚动 scrollable
+
+
+BootStrap代码
+              Bootstrap 允许您以两种方式显示代码：
+              第一种是 <code> 标签。如果您想要内联显示代码，那么您应该使用 <code> 标签。
+              第二种是 <pre> 标签。如果代码需要被显示为一个独立的块元素或者代码有多行，那么您应该使用 <pre> 标签。
+              请确保当您使用 <pre> 和 <code> 标签时，开始和结束标签使用了 unicode 变体： &lt; 和 &gt;。
+
+               元素/类	        描述
+               <var>	        变量赋值: x = ab + y	尝试一下
+               <kbd>	        按键提示： CTRL + P	尝试一下
+               <pre>	        多行代码	尝试一下
+               <pre class="pre-scrollable">	多行代码带有滚动条	尝试一下
+               <samp>	        电脑程序输出: Sample output	尝试一下
+               <code>	           同一行代码片段: span, div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
