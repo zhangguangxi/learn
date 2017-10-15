@@ -13,12 +13,5 @@
     <packaging>war</packaging>
     <artifactId>admin</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.zgx</groupId>
-            <artifactId>tec</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

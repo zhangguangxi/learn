@@ -16,12 +16,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
         <dependencies>
-            <dependency>
-                <groupId>com.zgx</groupId>
-                <artifactId>common-utils</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>jar</type>
-            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -184,6 +178,12 @@
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-ehcache</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>ehcache-core</artifactId>
+                        <groupId>net.sf.ehcache</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -227,10 +227,10 @@
                 </plugin>
 
                 <!-- mybatis generator  -->
-                <plugin>
+ <!--               <plugin>
                     <groupId>org.mybatis.generator</groupId>
                     <artifactId>mybatis-generator-maven-plugin</artifactId>
-                </plugin>
+                </plugin>-->
             </plugins>
         </build>
 </project>

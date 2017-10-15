@@ -68,6 +68,9 @@ public class CyclicBarrierOption {
             System.out.println("士兵"+i+"报道！");
              allSolider[i] = new Thread(new Soldier("士兵" + i, cyclicBarrier));
             allSolider[i].start();
+            if(i == 5){
+                allSolider[0].interrupt();
+            }
         }
 
     }
