@@ -39,15 +39,13 @@ public class MultiReadTest {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            try {
-                doneSignal.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            int count = KeyWordsCount.INSTANCE.getCount();
-            System.out.println("指定关键字出现的次数!");
         }
-
-
+        try {
+            doneSignal.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int count = KeyWordsCount.INSTANCE.getCount();
+        System.out.println("指定关键字出现的次数:"+count);
     }
 }

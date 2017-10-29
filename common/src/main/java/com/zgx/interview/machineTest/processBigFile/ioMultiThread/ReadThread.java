@@ -33,6 +33,7 @@ public class ReadThread extends  Thread{
 
     public void run(){
         try {
+            //设置读取的开始位置
             raf.seek(start);
             //本线程负责读取文件的大小
             long contentLen = end -start;
@@ -51,7 +52,7 @@ public class ReadThread extends  Thread{
                         break;
                 }
                 raf.read(buff);
-                result = new String(buff,"gb2312");
+                result = new String(buff,"utf-8");
 
                 int count = this.getCountByKeywords(result,keyWords);
                 if(count > 0 ){
