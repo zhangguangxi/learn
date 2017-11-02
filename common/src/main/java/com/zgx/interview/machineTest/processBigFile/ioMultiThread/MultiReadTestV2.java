@@ -3,7 +3,7 @@ package com.zgx.interview.machineTest.processBigFile.ioMultiThread;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.*;
 
 public class MultiReadTestV2 {
     public static void main(String[] args) {
@@ -20,6 +20,8 @@ public class MultiReadTestV2 {
         //线程计数器
         CountDownLatch countDownLatch = new CountDownLatch(DOWN_THREAD_NUM);
         RandomAccessFile[] outArr = new RandomAccessFile[DOWN_THREAD_NUM];
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
+        ExecutorService threadPool = Executors.newFixedThreadPool(DOWN_THREAD_NUM);
         File file = new File(path);
         //获取文件总字节数
         long length = file.length();
@@ -39,13 +41,14 @@ public class MultiReadTestV2 {
                 end+=offSet;
             }
             Biz biz = new Biz(outArr[i], start, end);
-            new Thread(new ReadThreadV2(biz,countDownLatch)).start();
+            threadPool.submit(new ReadThreadV2(biz,countDownLatch));
         }
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        threadPool.shutdown();
         System.out.println("处理完成!");
     }
 }
