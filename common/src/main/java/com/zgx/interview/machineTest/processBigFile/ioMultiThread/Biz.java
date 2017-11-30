@@ -1,3 +1,4 @@
+/*
 package com.zgx.interview.machineTest.processBigFile.ioMultiThread;
 
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
@@ -73,3 +74,4 @@ public class Biz {
         return sb.toString();
     }
 }
+*/

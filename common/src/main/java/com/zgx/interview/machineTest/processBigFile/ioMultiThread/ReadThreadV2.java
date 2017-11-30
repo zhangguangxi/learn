@@ -1,3 +1,4 @@
+/*
 package com.zgx.interview.machineTest.processBigFile.ioMultiThread;
 
 import java.io.IOException;
@@ -19,3 +20,4 @@ public class ReadThreadV2 implements  Runnable {
         cdl.countDown();
     }
 }
+*/

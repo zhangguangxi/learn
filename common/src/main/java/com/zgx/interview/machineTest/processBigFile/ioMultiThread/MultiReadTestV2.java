@@ -1,3 +1,4 @@
+/*
 package com.zgx.interview.machineTest.processBigFile.ioMultiThread;
 
 import java.io.File;
@@ -52,3 +53,4 @@ public class MultiReadTestV2 {
         System.out.println("处理完成!");
     }
 }
+*/
