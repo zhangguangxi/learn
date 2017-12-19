@@ -2,39 +2,57 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <!-- 创建一个连接工厂 -->
+
+    <!-- 配置文件 -->
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <property name="locations">
+        <list>
+            <value>classpath:config/redis.properties</value>
+        </list>
+    </property>
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties" ref="configProperties"></property>
+    </bean>
+
+    <import resource="spring-redis.xml"/>
+<!--
+
+    &lt;!&ndash; 创建一个连接工厂 &ndash;&gt;
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://192.168.1.108:61616"></property>
     </bean>
 
-    <!-- 声明ActiveMQ消息目标，目标可以是一个队列，也可以是一个主题ActiveMQTopic-->
+    &lt;!&ndash; 声明ActiveMQ消息目标，目标可以是一个队列，也可以是一个主题ActiveMQTopic&ndash;&gt;
     <bean id="destinationOne" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg index="0" value="testQueOne"></constructor-arg>
     </bean>
 
-    <!-- 设置 消息 目的地  -->
+    &lt;!&ndash; 设置 消息 目的地  &ndash;&gt;
     <bean id="jmsTemplateOne" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"></property>
         <property name="defaultDestination" ref="destinationOne"></property>
         <property name="receiveTimeout" value="6000"></property>
     </bean>
 
-    <!-- 配置生产者-->
+    &lt;!&ndash; 配置生产者&ndash;&gt;
     <bean id="senderOne" class="com.zgx.message_queue.activeMq.SenderOne">
         <property name="jmsTemplateOne" ref="jmsTemplateOne"></property>
     </bean>
 
-    <!-- 配置消费者-->
+    &lt;!&ndash; 配置消费者&ndash;&gt;
     <bean id="receiverOne" class="com.zgx.message_queue.activeMq.ReceiverOne">
 
     </bean>
 
-    <!-- 配置消息监听器 -->
+    &lt;!&ndash; 配置消息监听器 &ndash;&gt;
     <bean id="consumerMessageListenerOfOne" class="com.zgx.message_queue.activeMq.ReceiverOne"></bean>
-    <!-- 消息监听容器 消息接收监听器用于异步接收消息 -->
+    &lt;!&ndash; 消息监听容器 消息接收监听器用于异步接收消息 &ndash;&gt;
     <bean id="jmsContainerOne" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory" />
         <property name="destination" ref="destinationOne" />
         <property name="messageListener" ref="consumerMessageListenerOfOne" />
     </bean>
+-->
 </beans>

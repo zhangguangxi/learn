@@ -1,3 +1,4 @@
+/*
 package com.zgx.design_pattern;
 
 import com.google.common.cache.Cache;
@@ -12,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public abstract class RegexCache {
-    /*
+    */
+/*
     LoadingCache<Key, Graph> graphs = CacheBuilder.newBuilder()
         .maximumSize(1000)
         .expireAfterWrite(10, TimeUnit.MINUTES)
@@ -23,7 +25,8 @@ public abstract class RegexCache {
                     return createExpensiveGraph(key);
                 }
         });
-     */
+     *//*
+
     static Cache<Object, Object> cache = CacheBuilder.newBuilder().build();
     static Cache<Object, Object> expireCache = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.SECONDS).build();
     static Cache<Object, Object> sizeCache = CacheBuilder.newBuilder().build();
@@ -59,15 +62,18 @@ public abstract class RegexCache {
 
     public static void main(String[] args) throws InterruptedException {
         //        String input = "sdf,sdfxx?lkjlkj;s-df";
+*/
 /*        String input = "sdf,sdfxx?lkjlkj;s-df";
         Pattern pattern = getPattern("*.,(;)?.*");
         Matcher matcher = pattern.matcher(input);
         while (matcher.find()){
             System.out.println(matcher.group());
-        }*/
+        }*//*
+
 
 //        String result = matcher.replaceAll("");
 //        System.out.println(result);
     }
 
 }
+*/

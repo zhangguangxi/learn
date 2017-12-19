@@ -41,11 +41,13 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+        <!-- Redis 缓存jar -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
 
+        <!-- 开始支持redis集群-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
@@ -73,17 +75,23 @@
         </dependency>
 
         <!-- Spring boot redis   -->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!-- redisson-->
+
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.redisson/redisson &ndash;&gt;
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.3.2</version>
         </dependency>
+-->
+
+
+
     </dependencies>
 
     <build>

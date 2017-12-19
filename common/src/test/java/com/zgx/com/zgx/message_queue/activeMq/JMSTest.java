@@ -1,3 +1,4 @@
+/*
 package com.zgx.com.zgx.message_queue.activeMq;
 
 import com.zgx.message_queue.activeMq.SenderOne;
@@ -14,3 +15,4 @@ public class JMSTest {
         senderOne.sendInfo("10","2");
     }
 }
+*/
